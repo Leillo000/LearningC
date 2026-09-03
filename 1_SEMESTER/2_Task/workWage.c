@@ -14,10 +14,10 @@ int main(){
 
     printf("Introduce la cantidad de d%cas trabajados:\n", i);
     scanf("%lf", &daysWorked);
-    printf("Introduce tu salario:\n");
+    printf("Introduce tu salario mensual:\n");
     scanf("%lf", &wage);
     yearsWorked = daysWorked / 365;
-    severancePay = wage * 30 * yearsWorked * 0.0315;
+    severancePay = wage * daysWorked / 360;
     interestSPay = severancePay * pow(1.05, yearsWorked); // es un 5 % anual compuesto 
     
         vacationsDays = 12; // Por defecto los trabajadores tienen 12 dias de vacaciones
