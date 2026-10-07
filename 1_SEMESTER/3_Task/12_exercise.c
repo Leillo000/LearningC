@@ -9,7 +9,9 @@ int main(){
 
     printf("Dame un n%cmero entero y te dir%c si es primo o no\n", u, e);
     scanf("%d", &num);
-
+/*
+Llega hasta num / 2 ya que no existe número entero que tenga divisores mayores que su mitad.
+*/
     while(counter < (num / 2) && isPrime != 0){
         if (num % counter == 0){
             isPrime = 0;
