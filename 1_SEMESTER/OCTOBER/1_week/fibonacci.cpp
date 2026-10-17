@@ -1,3 +1,7 @@
+/*
+07/10/26
+*/
+
 #include <stdio.h>
 
 void fibonacci(int n);
@@ -18,3 +22,5 @@ void fibonacci(int n){
         printf("%d ", n3);
     }
 }
+
+
