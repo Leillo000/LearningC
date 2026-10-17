@@ -2,6 +2,7 @@
 #include <math.h>
 
 void menu();
+
 void totalNomina();
 void totalNominaFor();
 void totalZeros();
@@ -17,6 +18,9 @@ void powerNumbers();
 void fibonacci();
 void candidates();
 void argentinaRegions();
+void stadium();
+void internationalCalls();
+void wines();
 
 const char percentage = 37;
 const char a = 160;
@@ -32,6 +36,11 @@ int main()
     menu();
     return 0;
 }
+
+/**
+ * @brief
+ * Mostrar el menú de opciones dentro del programa
+ */
 
 void menu()
 {
@@ -58,6 +67,9 @@ void menu()
         printf("13. Serie Fibonacci\n");
         printf("14. Candidatos\n");
         printf("15. Promedio mensual y anual de lluvias\n");
+        printf("16. Estadio\n");
+        printf("17. Llamadas internacionales\n");
+        printf("18. Vinos\n");
         printf("======================================\n");
         printf("|  PRESIONE OTRO N%cMERO PARA SALIR   |\n", uUpper);
         printf("======================================\n");
@@ -109,6 +121,15 @@ void menu()
             break;
         case 15:
             argentinaRegions();
+            break;
+        case 16:
+            stadium();
+            break;
+        case 17:
+            internationalCalls();
+            break;
+        case 18:
+            wines();
             break;
         default:
             opc = -1;
@@ -483,8 +504,10 @@ void argentinaRegions()
         printf("Ingrese el promedio mensual del mes %d\n en la zona sur\n", i + 1);
         scanf("%f", &sum);
         sur += sum;
-        if (i == 0) leastAnnual = sum;
-        if (leastAnnual > sum) {
+        if (i == 0)
+            leastAnnual = sum;
+        if (leastAnnual > sum)
+        {
             leastAnnual = sum;
             month = i + 1;
         }
@@ -507,8 +530,227 @@ void argentinaRegions()
         printf("La zona con mayor lluvia anual fue la zona sur\n");
     else
         printf("La zona con mayor lluvia anual fue la zona centro\n");
-    
-    
+
+    printf("======================================\n");
+}
+
+void stadium()
+{
+    int p1 = 0;
+    int p2 = 0;
+    int p3 = 0;
+    int p4 = 0;
+    int p5 = 0;
+    int tickets = 0;
+    int correctAnswer = 1;
+
+    float pricep1 = 0.0;
+    float pricep2 = 0.0;
+    float pricep3 = 0.0;
+    float pricep4 = 0.0;
+    float pricep5 = 0.0;
+    float inmediateAmount = 0.0;
+    float totalAmountStadium = 0.0;
+
+    printf("Ingrese el valor del boleto para la localidad no. 1\n");
+    scanf("%f", &pricep1);
+    printf("Ingrese el valor del boleto para la localidad no. 2\n");
+    scanf("%f", &pricep2);
+    printf("Ingrese el valor del boleto para la localidad no. 3\n");
+    scanf("%f", &pricep3);
+    printf("Ingrese el valor del boleto para la localidad no. 4\n");
+    scanf("%f", &pricep4);
+    printf("Ingrese el valor del boleto para la localidad no. 5\n");
+    scanf("%f", &pricep5);
+
+    int opc = 0;
+    while (opc != -1)
+    {
+        inmediateAmount = 0;
+        correctAnswer = 1;
+        printf("Ingrese la clave del local\n");
+        printf("-1. Para salir\n");
+        scanf("%d", &opc);
+        if (opc != -1)
+        {
+            printf("Ingrese la cantidad de boletos\n");
+            scanf("%d", &tickets);
+        }
+        switch (opc)
+        {
+        case 1:
+            p1 += tickets;
+            inmediateAmount = tickets * pricep1;
+            break;
+        case 2:
+            p2 += tickets;
+            inmediateAmount = tickets * pricep2;
+            break;
+        case 3:
+            p3 += tickets;
+            inmediateAmount = tickets * pricep3;
+            break;
+        case 4:
+            p4 += tickets;
+            inmediateAmount = tickets * pricep4;
+            break;
+        case 5:
+            p5 += tickets;
+            inmediateAmount = tickets * pricep5;
+            break;
+        default:
+            printf("======================================\n");
+            printf("|       INGRESE UNA OPCION VALIDA    |\n");
+            printf("======================================\n");
+            correctAnswer = 0;
+            break;
+        }
+        totalAmountStadium += inmediateAmount;
+        if (correctAnswer)
+        {
+            printf("======================================\n");
+            printf("CLAVE \t%d\n", opc);
+            printf("CANTIDAD:  %d\n", tickets);
+            printf("MONTO:  $%f\n", inmediateAmount);
+            printf("======================================\n");
+        }
+    }
+
+    printf("======================================\n");
+    printf("CANTIDAD DE BOLETOS DEL TIPO 1: %d\n", p1);
+    printf("CANTIDAD DE BOLETOS DEL TIPO 2: %d\n", p2);
+    printf("CANTIDAD DE BOLETOS DEL TIPO 3: %d\n", p3);
+    printf("CANTIDAD DE BOLETOS DEL TIPO 4: %d\n", p4);
+    printf("CANTIDAD DE BOLETOS DEL TIPO 5: %d\n", p5);
+    printf("RECAUDACI%cN TOTAL DEL ESTADIO: $%f\n", oUpper, totalAmountStadium);
+    printf("======================================\n");
+}
+
+void internationalCalls()
+{
+    char opc = 'P';
+    int minutes = 0;
+
+    const float interTax = 7.59;
+    const float interPriceMinute = 3.03;
+
+    const float nationalTax = 1.20;
+    const float nationalPriceMinute = 0.48;
+
+    int calls = 0;
+    const float localTax = 0.60;
+
+    float bill = 0.0;
+
+    while (opc != 'Q')
+    {
+        printf("======================================\n");
+        printf("|        SELECCIONE UNA OPCI%cN       |\n", oUpper);
+        printf("======================================\n");
+        printf("I. Llamada internacional\n");
+        printf("N. Llamada nacional\n");
+        printf("L. Llamada local\n");
+        printf("Q. Salir\n");
+        printf("======================================\n");
+        scanf(" %c", &opc);
+
+        if (opc != 'Q')
+        {
+            printf("Ingrese la duraci%cn de la llamada en minutos\n", o);
+            scanf("%d", &minutes);
+        }
+
+        switch (opc)
+        {
+        case 'I':
+            bill += interTax;
+            if (minutes > 3)
+                bill += interPriceMinute * (minutes - 3);
+            break;
+        case 'N':
+            bill += nationalTax;
+            if (minutes > 3)
+                bill += nationalPriceMinute * (minutes - 3);
+            break;
+        case 'L':
+            calls++;
+            if (calls > 50)
+                bill += 60.0;
+            break;
+        case 'Q': // No se hace nada, solo es para que no marque opcion no valida
+            break;
+        default:
+            printf("======================================\n");
+            printf("|       INGRESE UNA OPCION VALIDA    |\n");
+            printf("======================================\n");
+            break;
+        }
+    }
+    printf("======================================\n");
+    printf("CUENTA TOTAL: %.2f\n", bill);
+    printf("======================================\n");
+}
+
+void wines()
+{
+    int years = 0;
+
+    float liters = 0.0;
+
+    float wine1 = 0.0;
+    float wine2 = 0.0;
+    float wine3 = 0.0;
+    float wine4 = 0.0;
+    float wine5 = 0.0;
+
+    int greatestYear = 0;
+    int yearW3NoProd = 0;
+
+    printf("Ingrese la cantidad de a%cos para calcular los litros producidos\n", ene);
+    scanf("%d", &years);
+
+    for (int i = 0; i < years; i++)
+    {
+        printf("======================================\n");
+        printf("             ANIO %d\n", i + 1);
+        printf("======================================\n");
+
+        printf("Ingrese la cantidad de litros producidos vino 1\n");
+        scanf("%f", &liters);
+        wine1 += liters;
+
+        printf("Ingrese la cantidad de litros producidos vino 2\n");
+        scanf("%f", &liters);
+        wine2 += liters;
+        if (i == 0)
+            greatestYear = i + 1;
+        else if (greatestYear < liters)
+            greatestYear = i + 1;
+
+        printf("Ingrese la cantidad de litros producidos vino 3\n");
+        scanf("%f", &liters);
+        wine3 += liters;
+        if (liters == 0.0f) // 0.0f para representar el 0 en float
+            yearW3NoProd = i + 1;
+
+        printf("Ingrese la cantidad de litros producidos vino 4\n");
+        scanf("%f", &liters);
+        wine4 += liters;
+
+        printf("Ingrese la cantidad de litros producidos vino 5\n");
+        scanf("%f", &liters);
+        wine5 += liters;
+    }
+    printf("======================================\n");
+    printf("TOTAL PRODUCIDO : %f\n", wine1 + wine2 + wine3 + wine4 + wine5);
+    printf("======================================\n");
+    printf("VINO 1: %f\n", wine1);
+    printf("VINO 2: %f\n", wine2);
+    printf("VINO 3: %f\n", wine3);
+    printf("VINO 4: %f\n", wine4);
+    printf("VINO 5: %f\n", wine5);
+    if(yearW3NoProd != 0) printf("En el a%co %d no se produjo el vino 3\n", ene, yearW3NoProd);
+    printf("MAYOR CANTIDAD DE VINO 2 PRODUCIDO: ANIO %d\n", greatestYear);
     printf("======================================\n");
 }
 
