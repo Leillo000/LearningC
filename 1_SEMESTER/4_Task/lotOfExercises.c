@@ -21,6 +21,7 @@ void argentinaRegions();
 void stadium();
 void internationalCalls();
 void wines();
+void primeNumbers();
 
 const char percentage = 37;
 const char a = 160;
@@ -52,24 +53,25 @@ void menu()
         printf("======================================\n");
         printf("|        SELECCIONE UNA OPCI%cN       |\n", oUpper);
         printf("======================================\n");
-        printf("1. Nomina total\n");
-        printf("2. Nomina total con For\n");
-        printf("3. Contar los 0's en una serie de n%cmeros\n", u);
-        printf("4. Gastos de un viaje\n");
-        printf("5. Cubos de los n%cmeros naturales\n", u);
-        printf("6. Imprimir serie de n%cmeros\n", u);
-        printf("7. Calcular nuevo sueldo de empleados\n", u);
-        printf("8. N%cmeros positivos\n", u);
-        printf("9. N%cmero m%cs grande y m%cs peque%co\n", u, a, a, ene);
-        printf("10. Contar n%cmero de ventas\n", u);
-        printf("11. Conjetura ULAM\n");
-        printf("12. N%cmeros elevados por s%c mismos\n", u, i);
-        printf("13. Serie Fibonacci\n");
-        printf("14. Candidatos\n");
-        printf("15. Promedio mensual y anual de lluvias\n");
-        printf("16. Estadio\n");
-        printf("17. Llamadas internacionales\n");
-        printf("18. Vinos\n");
+        printf("1. Nomina total\n");                                      // 3.1
+        printf("2. Nomina total con For\n");                              // 3.2
+        printf("3. Contar los 0's en una serie de n%cmeros\n", u);        // 3.3
+        printf("4. Gastos de un viaje\n");                                // 3.4
+        printf("5. Cubos de los n%cmeros naturales\n", u);                // 3.5
+        printf("6. Imprimir serie de n%cmeros\n", u);                     // 3.2
+        printf("7. Calcular nuevo sueldo de empleados\n", u);             // 3.4
+        printf("8. N%cmeros positivos\n", u);                             // 3.5
+        printf("9. N%cmero m%cs grande y m%cs peque%co\n", u, a, a, ene); // 3.6
+        printf("10. Contar n%cmero de ventas\n", u);                      // 3.7
+        printf("11. Conjetura ULAM\n");                                   // 3.8
+        printf("12. N%cmeros elevados por s%c mismos\n", u, i);           // 3.9
+        printf("13. Serie Fibonacci\n");                                  // 3.10
+        printf("14. Candidatos\n");                                       // 3.11
+        printf("15. Promedio mensual y anual de lluvias\n");              // 3.13
+        printf("16. Estadio\n");                                          // 3.14
+        printf("17. Llamadas internacionales\n");                         // 3.15
+        printf("18. Vinos\n");                                            // 3.16
+        printf("19. N%cmeros primos\n");                                  // 3.17
         printf("======================================\n");
         printf("|  PRESIONE OTRO N%cMERO PARA SALIR   |\n", uUpper);
         printf("======================================\n");
@@ -130,6 +132,9 @@ void menu()
             break;
         case 18:
             wines();
+            break;
+        case 19:
+            primeNumbers();
             break;
         default:
             opc = -1;
@@ -749,8 +754,57 @@ void wines()
     printf("VINO 3: %f\n", wine3);
     printf("VINO 4: %f\n", wine4);
     printf("VINO 5: %f\n", wine5);
-    if(yearW3NoProd != 0) printf("En el a%co %d no se produjo el vino 3\n", ene, yearW3NoProd);
+    if (yearW3NoProd != 0)
+        printf("En el a%co %d no se produjo el vino 3\n", ene, yearW3NoProd);
     printf("MAYOR CANTIDAD DE VINO 2 PRODUCIDO: ANIO %d\n", greatestYear);
+    printf("======================================\n");
+}
+
+void primeNumbers()
+{
+    int countNumbPrimes = 0;
+    int limit = 0;
+    int isPrime = 1;
+    printf("Introduce un n%cmero y te digo cuantos n%cmeros primos hay entre 1 y ese n%cmero \n", u, u, u);
+    scanf("%d", &limit);
+
+    for (int i = 3; i <= limit; i += 2)
+    {
+        isPrime = 1; // Se reinicia la variable
+        if (limit > 3)
+        {
+            // El limite lo dividi entre 2 porque ningun numero que sea primo es par, por lo que no es divisible entre 2.
+            // Y tampoco ningun numero (en general) es divisible por un numero mayor a su mitad.
+
+            if(i == 3) countNumbPrimes++; // Se suma el 2 como numero primo 
+
+            for (int j = 3; j < i / 2; j += 2)
+            {
+                if (i % j == 0) // Si es divisible por un numero menor a la mitad de ese numero
+                {
+                    isPrime = 0;
+                    break; // Se rompe el ciclo, ya no hay nada más que verificar
+                }
+            }
+            if (isPrime){
+                countNumbPrimes++;
+                // printf("%d \n", i); // Verificar, descomente esta linea para verificar las respuestas si es que gusta
+            }
+        }
+        else
+        {
+            countNumbPrimes = 1; // El único número primo entre 1 y 3 es 2.
+        }
+    }
+
+    /**
+     * NOTE: 
+     * Comprendí todos los números entre 1 y menores o iguales a N, es decir, incluí a N para ser considerado dentro
+     * de la cuenta. Por eso, cuando el input es 5, el output será 3 números primos (2, 3, 5).
+     */
+
+    printf("======================================\n");
+    printf("Entre el 1 y el %d hay %d n%cmeros primos\n", limit, countNumbPrimes, u);
     printf("======================================\n");
 }
 
