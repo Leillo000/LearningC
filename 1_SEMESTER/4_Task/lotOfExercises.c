@@ -22,6 +22,7 @@ void stadium();
 void internationalCalls();
 void wines();
 void primeNumbers();
+void factories();
 
 const char percentage = 37;
 const char a = 160;
@@ -72,6 +73,8 @@ void menu()
         printf("17. Llamadas internacionales\n");                         // 3.15
         printf("18. Vinos\n");                                            // 3.16
         printf("19. N%cmeros primos\n");                                  // 3.17
+        printf("20. F%cbricas\n", a);                                     // 3.18
+        printf("21. N%cmero perfecto\n", u);                              // 3.19
         printf("======================================\n");
         printf("|  PRESIONE OTRO N%cMERO PARA SALIR   |\n", uUpper);
         printf("======================================\n");
@@ -135,6 +138,9 @@ void menu()
             break;
         case 19:
             primeNumbers();
+            break;
+        case 20:
+            factories();
             break;
         default:
             opc = -1;
@@ -776,7 +782,8 @@ void primeNumbers()
             // El limite lo dividi entre 2 porque ningun numero que sea primo es par, por lo que no es divisible entre 2.
             // Y tampoco ningun numero (en general) es divisible por un numero mayor a su mitad.
 
-            if(i == 3) countNumbPrimes++; // Se suma el 2 como numero primo 
+            if (i == 3)
+                countNumbPrimes++; // Se suma el 2 como numero primo
 
             for (int j = 3; j < i / 2; j += 2)
             {
@@ -786,7 +793,8 @@ void primeNumbers()
                     break; // Se rompe el ciclo, ya no hay nada más que verificar
                 }
             }
-            if (isPrime){
+            if (isPrime)
+            {
                 countNumbPrimes++;
                 // printf("%d \n", i); // Verificar, descomente esta linea para verificar las respuestas si es que gusta
             }
@@ -798,7 +806,7 @@ void primeNumbers()
     }
 
     /**
-     * NOTE: 
+     * NOTE:
      * Comprendí todos los números entre 1 y menores o iguales a N, es decir, incluí a N para ser considerado dentro
      * de la cuenta. Por eso, cuando el input es 5, el output será 3 números primos (2, 3, 5).
      */
@@ -808,3 +816,57 @@ void primeNumbers()
     printf("======================================\n");
 }
 
+void factories()
+{
+    int nFactories = 0;
+    int greaterFactorie = 0;
+
+    float earnedGF = 0;
+    float moneyEarned = 0.0;
+    float annualEarned = 0.0;
+    // julio -> 7
+
+    printf("Ingresa el n%cmero de f%cbricas\n", u, a);
+    scanf("%d", &nFactories);
+
+    if (nFactories >= 1 && nFactories <= 100)
+    {
+        for (int i = 0; i < nFactories; i++)
+        {
+            annualEarned = 0.0;
+            for (int j = 0; j < 12; j++)
+            {
+                printf("Ingrese la producci%cn de la f%cbrica %d del mes %d\n", o, a, i + 1, j + 1);
+                scanf("%f", &moneyEarned);
+                annualEarned += moneyEarned;
+                if (j == 6 && moneyEarned > 3000000)
+                { // Es el mes 7, solo que comienzo siempre mis ciclos con 0
+                    printf("======================================\n");
+                    printf("F%cbrica: %d\n", a, i + 1);
+                    printf("Super%c la producci%cn de $3,000,000\n");
+                    printf("======================================\n");
+                }
+            }
+
+            if (earnedGF < annualEarned || i == 0)
+            {
+                greaterFactorie = i + 1;
+                earnedGF = annualEarned;
+            }
+
+            printf("======================================\n");
+            printf("F%cbrica: %d\n", a, i);
+            printf("Producci%cn anual: $%f\n", o, annualEarned);
+            printf("======================================\n");
+        }
+
+        printf("======================================\n");
+        printf("|       FABRICA QUE MAS PRODUJO      |\n");
+        printf("======================================\n");
+        printf("Clave: %d\n", greaterFactorie);
+        printf("Producci%cn: $%f\n", o, earnedGF);
+        printf("======================================\n");
+    } else {
+        printf("No puede ingresar m%cs de 100 f%cbricas\n", a, a);
+    }
+}
