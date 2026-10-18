@@ -23,6 +23,7 @@ void internationalCalls();
 void wines();
 void primeNumbers();
 void factories();
+void perfectNumber();
 
 const char percentage = 37;
 const char a = 160;
@@ -141,6 +142,9 @@ void menu()
             break;
         case 20:
             factories();
+            break;
+        case 21:
+            perfectNumber();
             break;
         default:
             opc = -1;
@@ -866,7 +870,41 @@ void factories()
         printf("Clave: %d\n", greaterFactorie);
         printf("Producci%cn: $%f\n", o, earnedGF);
         printf("======================================\n");
-    } else {
+    }
+    else
+    {
         printf("No puede ingresar m%cs de 100 f%cbricas\n", a, a);
+    }
+}
+
+void perfectNumber()
+{
+    int num = 0;
+    int countNumb = 0;
+    printf("Ingresa un n%cmero y te dire los n%cmero perfectos que hay entre 1 y ese n%cmero\n", u, u, u);
+    scanf("%d", &num);
+    for (int i = 1; i <= num; i++)
+    {
+        countNumb = 0;
+        for (int j = 1; j <= i / 2; j++)
+        { // Ningun numero es divisible mas alla de su mitad
+            if (i % j == 0)
+            {
+                countNumb += j;
+                // printf("%d \n", j); // Verificar
+            }
+        }
+        if (countNumb == i)
+        {
+            printf("======================================\n");
+            printf("|     %d ES UN N%cMERO PERFECTO      |\n", i, uUpper);
+            printf("======================================\n");
+        }
+        else
+        {
+            printf("======================================\n");
+            printf("|  %d NO ES UN N%cMERO PERFECTO :(   |\n", i, uUpper);
+            printf("======================================\n");
+        }
     }
 }
